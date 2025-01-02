@@ -1,0 +1,12 @@
+Source: mint-backgrounds-vera
+Section: admin
+Priority: optional
+Maintainer: Linux Mint <root@linuxmint.com>
+Build-Depends: debhelper (>= 8)
+Standards-Version: 3.9.2
+
+Package: mint-backgrounds-vera
+Architecture: all
+Description: The desktop backgrounds for Linux Mint 21.1 Vera
+ This package contains quality desktop backgrounds for Linux Mint 21.1 Vera.
+

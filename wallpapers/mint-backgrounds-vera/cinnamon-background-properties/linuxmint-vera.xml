@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE wallpapers SYSTEM "cinnamon-wp-list.dtd">
+<wallpapers>
+    <wallpaper deleted="false">
+        <name>Frozen</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/aburden_frozen.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Aaron Burden</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Grass</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/aburden_grass.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Aaron Burden</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Road</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/aburden_road.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Aaron Burden</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Slovenia</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/akrivec_slovenia.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Ales Krivec</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Norway</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/dmirlea_norway.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Daniel Mirlea</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Snow</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/jhuber_snow.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Jan Huber</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Switzerland</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/jjforestbird_switzerland.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>JJ Førestbird</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Estonia</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/ktaira_estonia.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Kazuki Taira</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Retro</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/lherrera_retro.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Lorenzo Herrera</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Cracked</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/lvillasmil_cracked.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Luis Villasmil</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Calm</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/mnohassi_calm.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Mohamed Nohassi</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Red Dusk</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/mpiwnicki_red_dusk.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Marek Piwnicki</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Sky</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/mpiwnicki_sky.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Marek Piwnicki</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Sparkling</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/mpiwnicki_sparkling.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Marek Piwnicki</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Germany</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/msaeling_germany.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Max Saeling</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>India</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/navi_india.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Navi</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Sydney</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/pcarmona_sydney.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Paul Carmona</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>3D Render</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/pczerwinski_3d_render.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Pawel Czerwinski</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Mount Baker</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/pfore_mount_baker.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Patrick Fore</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Computer Art</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/sjohnson_computer_art.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Steve Johnson</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Psychedelic</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/ssinclair_psychedelic.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Sean Sinclair</artist>
+    </wallpaper>
+    <wallpaper deleted="false">
+        <name>Skiing</name>
+        <filename>/usr/share/backgrounds/linuxmint-vera/vbkremer_skiing.jpg</filename>
+        <options>zoom</options>
+        <shade_type>solid</shade_type>
+        <pcolor>#000000</pcolor>
+        <scolor>#000000</scolor>
+        <artist>Valentin B. Kremer</artist>
+    </wallpaper>
+</wallpapers>
