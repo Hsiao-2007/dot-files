@@ -29,9 +29,8 @@ else
     echo "While this script pauses, please copy your github key an use it for the next install"
     sleep 5
     # yay install
-    git clone https://aur.archlinux.org/yay-bin.git ~/yay-bin
-    cd ~/yay-bin; makepkg -si
-    yay -S spotify spicetify vscodium-bin librewolf-bin ventoy-bin davinci-resolve
+    git clone https://aur.archlinux.org/yay-bin.git ~/yay-bin && cd ~/yay-bin; makepkg -si
+    yay -S spotify spicetify vscodium-bin librewolf-bin ventoy-bin davinci-resolve --noconfirm
     
   else
     echo "Cancelling script..."
