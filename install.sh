@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#TODO: Create import script to update this script's install proccess!
 # This is an install script to install all the components of this directory
 if [[ "$USER" != "root" ]]; then
   echo "Run this script as root!"
@@ -11,15 +11,8 @@ else
     # Run all commands here
     echo "Beginning process"
     # Git install
-    echo "Detecting git installation"
-    whereis git
-    if [[ "$?" -eq "0" ]]; then
-        echo "Git found, not forcing install"
-    else
-        echo "Git not installed, installing git"
-        sudo pacman -S git git-delta
-    fi
-    #TODO: Create import script to extract this data appropriately
+    echo "Installing packages from pacman"
+    sudo pacman -S base-devel firefox firefox-pwa git-delta neovim npm gcc cmake ccls samba fastfetch syncthing zsh bat eza wireguard-tools tmux alacritty --noconfirm
     echo "Git config being setup"
     git config --global user.email 147453729+Hsiao-2007@users.noreply.github.com
     git config --global user.name Hsiao-2007
@@ -33,10 +26,13 @@ else
     git config --global diff.colormoved default
     git config --global init.defaultbranch main
     echo "Git install complete"
-    read -p -s "While this script pauses, please create a github api key to use for the upcoming git pull requests!"
+    echo "While this script pauses, please copy your github key an use it for the next install"
     sleep 5
-    #Unset token
-    unset token
+    # yay install
+    git clone https://aur.archlinux.org/yay-bin.git ~/yay-bin
+    cd ~/yay-bin; makepkg -si
+    yay -S spotify spicetify vscodium-bin librewolf-bin ventoy-bin davinci-resolve
+    
   else
     echo "Cancelling script..."
     exit -1
