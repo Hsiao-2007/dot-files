@@ -31,7 +31,10 @@ else
     # yay install
     git clone https://aur.archlinux.org/yay-bin.git ~/yay-bin && cd ~/yay-bin; makepkg -si
     yay -S spotify spicetify vscodium-bin librewolf-bin ventoy-bin davinci-resolve --noconfirm
-    
+    #fastfetch config install
+    fastfetch --gen-config
+    mv ~/.config/fastfetch/config.jsonc ~/.config/fastfetch/bk.config.jsonc
+    cp src/fastfetch/config.jsonc ~/.config/fastfetch/
   else
     echo "Cancelling script..."
     exit -1
