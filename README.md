@@ -46,7 +46,7 @@ git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZS
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 ```
-7. Copy `.zshrc` and the `.oh-my-zsh/` directory to the home folder
+7. Copy `.zshrc`, `.p10k.zsh`, and the `.oh-my-zsh/` directory to the home folder
 
 
 #### Spicetify:
