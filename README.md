@@ -5,7 +5,7 @@
 #### Network Share:
 1. Install `cifutils` 
 2. Create a files to store the credentials to the server to read only for yourself
-```
+```bash
 touch .creds
 
 #use echo -e "username=...\npassword=..." > .creds or write
