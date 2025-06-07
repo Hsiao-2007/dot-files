@@ -1,0 +1,8 @@
+alias gt="git status"
+alias sysup="sudo pacman -Syu; yay -Syu;"
+alias cat="bat"
+alias ls="eza --color=always --git --no-user --no-permissions --no-time --no-filesize --icons=always" 
+alias lt="eza --color=always --git --long --no-user --no-permissions --no-time --no-filesize --tree --level=2 --icons=always"
+alias la="eza --color=always --git --no-user --no-permissions --no-time --no-filesize --icons=always -a" 
+alias ll="eza --color=always --git --long --icons=always"
+alias vim="nvim"

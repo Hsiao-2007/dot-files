@@ -1,0 +1,26 @@
+background-color=#282c34ff
+font=JetBrainsMonoNerdFontMono-Regular 11
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+on-button-middle=exec makoctl menu -- rofi -demnu -p 'Select action: '
+default-timeout=5000
+
+border-color=#3e4451
+border-radius=10
+border-size=3
+
+icon-path=~/.local/share/icons/Papirus-Dark/
+icon-location=right
+max-icon-size=48
+
+format=<b>%s</b>\n%b
+
+[summary~=".*Proton.*"]
+border-color=#c678dd
+
+[app-name=discord]
+border-color=#002bff
+
+[urgency=high]
+border-color=#e06c75
+text-color=#e06c75
+default-timeout=0
