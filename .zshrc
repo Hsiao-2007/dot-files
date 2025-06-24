@@ -91,6 +91,7 @@ export FZF_DEFAULT_OPTS='--height 50% --tmux
 --color=fg+:,bg+:,hl+:#5fd7ff
 --color=info:#0080ff,prompt:#5fd7ff,pointer:#5fd7ff
 --color=marker:#87ff00,spinner:#0080ff,header:#87afaf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+export EDITOR=nvim
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
