@@ -18,7 +18,8 @@ return {
 			dependencies = {
 				"L3MON4D3/LuaSnip",
 				version = "v2.*",
-				build = "make install_jsregexp"
+				build = "make install_jsregexp",
+				"rafamadriz/friendly-snippets"
 			},
 			opts = {
 				snippets = { preset = 'luasnip' },
@@ -36,12 +37,14 @@ return {
 				},
 				keymap = {
 					preset = 'super-tab'
-				}
+				},
 			},
 		}
 	},
 	config = function()
+		require("luasnip.loaders.from_vscode").lazy_load()
 		require("lspconfig").lua_ls.setup {}
+		-- Install Clang
 		require("lspconfig").ccls.setup {
 			init_options = {
 				compilationDatabaseDirectory = "build",
@@ -59,8 +62,10 @@ return {
 				},
 			}
 		}
-		require("lspconfig").java_language_server.setup {}
-		require("lspconfig").jdtls.setup {}
+		-- Install dotnet-sdk, run donet tool install --global csharp_ls, and then add ~/.dotnet/tools to PATH
+		vim.lsp.enable('csharp_ls')
+		vim.lsp.enable('basedpyright')
+		-- require("lspconfig").jdtls.setup {}
 		vim.api.nvim_create_autocmd('LspAttach', {
 			callback = function(args)
 				local c = vim.lsp.get_client_by_id(args.data.client_id)
