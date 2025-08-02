@@ -9,6 +9,8 @@ while true; do
 		echo "{\"text\": \" Snowy Lake\", \"alt\": \"snow\"}"
 	elif [[ "$WALLPAPER_CHOICE" == "EVA" ]]; then
 		echo "{\"text\": \" Evangelion Beach\", \"alt\": \"eva\"}"
+	elif [[ "$WALLPAPER_CHOICE" == "UNIT01" ]]; then
+		echo "{\"text\": \" Unit-01 Eva\", \"alt\": \"unit01\"}"
 	else
 		echo "{\"text\": \" Wallpaper\", \"alt\": \"default\"}"
 	fi

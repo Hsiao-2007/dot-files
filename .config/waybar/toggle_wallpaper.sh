@@ -13,6 +13,10 @@ elif [[ "$WALLPAPER_CHOICE" == "SNOW" ]]; then
 	echo "Using EVA wallpaper.."
 	echo "EVA" > /tmp/wallpaper_choice.txt 
 elif [[ "$WALLPAPER_CHOICE" == "EVA" ]]; then
+	hyprctl hyprpaper wallpaper ", /home/hsiao/Pictures/Wallpapers/Unit01Wallpaper.png"
+	echo "Using UNIT01 wallpaper.."
+	echo "UNIT01" > /tmp/wallpaper_choice.txt
+elif [[ "$WALLPAPER_CHOICE" == "UNIT01" ]]; then
 	hyprctl hyprpaper wallpaper ", /home/hsiao/Pictures/Wallpapers/BeachWallpaper.jpg"
 	echo "Using BEACH wallpaper.."
 	echo "BEACH" > /tmp/wallpaper_choice.txt
