@@ -14,7 +14,7 @@ vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'telescope help 
 vim.keymap.set('v', '<leader>y', '"+y', { desc = "copy to system clip" })
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = "paste from system clip" })
 
-vim.keymap.set('n', '<leader>tt',
+vim.keymap.set('n', '<leader>t',
 	function()
 		local current = require("onedarkpro.config").config.options.transparency
 		require("onedarkpro").setup({
@@ -29,8 +29,19 @@ vim.keymap.set('n', '<leader>tt',
 vim.keymap.set('n', '<leader>l', function()
 		require("lazy").show()
 	end,
-	{ desc = "open lazy" })
+	{ desc = "open lazy" }
+)
 
+vim.keymap.set('n', '<leader>b',
+	function()
+		if vim.o.showtabline == 2 then
+			vim.o.showtabline = 0
+		else
+			vim.o.showtabline = 2
+		end
+	end,
+	{ desc = "toggle buffers" }
+)
 --Options
 vim.opt.shiftwidth = 3
 vim.opt.number = true

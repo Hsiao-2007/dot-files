@@ -62,7 +62,7 @@ return {
 				},
 			}
 		}
-		-- Install dotnet-sdk, run donet tool install --global csharp_ls, and then add ~/.dotnet/tools to PATH
+		-- Install dotnet-sdk, run dotnet tool install --global csharp-ls, and then add ~/.dotnet/tools to PATH
 		vim.lsp.enable('csharp_ls')
 		vim.lsp.enable('basedpyright')
 		-- require("lspconfig").jdtls.setup {}
