@@ -43,9 +43,10 @@ return {
 	},
 	config = function()
 		require("luasnip.loaders.from_vscode").lazy_load()
-		require("lspconfig").lua_ls.setup {}
+		vim.lsp.enable('lua_ls')
+
 		-- Install Clang
-		require("lspconfig").ccls.setup {
+		vim.lsp.config('ccls', {
 			init_options = {
 				compilationDatabaseDirectory = "build",
 				init_options = {
@@ -61,11 +62,12 @@ return {
 					extraArgs = { "--gcc-toolchain=/usr" },
 				},
 			}
-		}
-		-- Install dotnet-sdk, run dotnet tool install --global csharp-ls, and then add ~/.dotnet/tools to PATH
+		})
+
+		-- Install dotnet-sdk, run donet tool install --global csharp_ls, and then add ~/.dotnet/tools to PATH
 		vim.lsp.enable('csharp_ls')
 		vim.lsp.enable('basedpyright')
-		-- require("lspconfig").jdtls.setup {}
+		-- vim.lsp.enable('jdtls')
 		vim.api.nvim_create_autocmd('LspAttach', {
 			callback = function(args)
 				local c = vim.lsp.get_client_by_id(args.data.client_id)
