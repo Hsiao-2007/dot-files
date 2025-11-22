@@ -16,13 +16,17 @@ vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = "paste from system cli
 
 vim.keymap.set('n', '<leader>t',
 	function()
-		local current = require("onedarkpro.config").config.options.transparency
-		require("onedarkpro").setup({
-			options = {
-				transparency = not current
-			}
+		-- local current = require("onedarkpro.config").config.options.transparency
+		-- require("onedarkpro").setup({
+		-- 	options = {
+		-- 		transparency = not current
+		-- 	}
+		-- })
+		-- vim.cmd("colorscheme onedark")
+		require("cyberdream").setup({
+			transparent = not vim.g.cyberdream_opts.transparent
 		})
-		vim.cmd("colorscheme onedark")
+		vim.cmd.colorscheme "cyberdream"
 	end,
 	{ desc = "toggle transparency" })
 
@@ -42,6 +46,29 @@ vim.keymap.set('n', '<leader>b',
 	end,
 	{ desc = "toggle buffers" }
 )
+
+vim.keymap.set('n', '<leader>n',
+	function()
+		if vim.o.relativenumber then
+			vim.o.relativenumber = false
+		else
+			vim.o.relativenumber = true
+		end
+	end,
+	{ desc = "toggle relative numbers" }
+)
+
+vim.keymap.set('n', '<leader>d',
+	function()
+		if vim.diagnostic.is_enabled() then
+			vim.diagnostic.enable(false, nil)
+		else
+			vim.diagnostic.enable(true, nil)
+		end
+	end,
+	{ desc = "toggle diagnostic text" }
+)
+
 --Options
 vim.opt.shiftwidth = 3
 vim.opt.number = true

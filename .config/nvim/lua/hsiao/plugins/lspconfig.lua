@@ -46,14 +46,15 @@ return {
 		vim.lsp.enable('lua_ls')
 
 		-- Install Clang
+		vim.lsp.enable('ccls')
 		vim.lsp.config('ccls', {
 			init_options = {
 				compilationDatabaseDirectory = "build",
-				init_options = {
-					cache = {
-						directory = ".ccls-cache",
-					},
+				cache = {
+					directory = ".ccls-cache",
 				},
+				-- init_options = {
+				-- },
 				index = {
 					threads = 0,
 				},
@@ -65,9 +66,20 @@ return {
 		})
 
 		-- Install dotnet-sdk, run donet tool install --global csharp_ls, and then add ~/.dotnet/tools to PATH
-		vim.lsp.enable('csharp_ls')
+		-- vim.lsp.enable('csharp_ls')
 		vim.lsp.enable('basedpyright')
 		-- vim.lsp.enable('jdtls')
+		vim.lsp.enable('gopls')
+		vim.lsp.enable('rust_analyzer')
+		vim.lsp.config('rust_analyzer', {
+			settings = {
+				['rust-analyzer'] = {
+					diagnostics = {
+						enable = true,
+					}
+				}
+			}
+		})
 		vim.api.nvim_create_autocmd('LspAttach', {
 			callback = function(args)
 				local c = vim.lsp.get_client_by_id(args.data.client_id)
@@ -83,6 +95,9 @@ return {
 					})
 				end
 			end,
+		})
+		vim.diagnostic.config({
+			virtual_text = true
 		})
 	end,
 }
