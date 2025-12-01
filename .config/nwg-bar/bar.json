@@ -1,7 +1,7 @@
 [
   {
     "label": "Lock",
-    "exec": "sh /home/hsiao/.config/hypr/.hyprlock.sh",
+    "exec": "sh $XDG_CONFIG_HOME/hypr/.hyprlock.sh",
     "icon": "/usr/share/nwg-bar/images/system-lock-screen.svg"
   },
   {

@@ -19,7 +19,7 @@ chmod 400 .creds # Make it read only for you
 4. Edit `/etc/fstab` to automatically mount the network share
 ```
 # Network Share
-//10.0.0.220/smb    /mnt/smb    cifs        credentials=/home/hsiao/.creds,_netdev,x-systemd.automount 0 0
+//10.0.0.220/smb    /mnt/smb    cifs        credentials=$XDG_HOME/.creds,_netdev,x-systemd.automount 0 0
 ```
 5. Run `sudo mount -a` to test the automount 
 
