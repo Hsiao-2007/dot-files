@@ -25,26 +25,16 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 	spec = {
 		{
-			-- "olimorris/onedarkpro.nvim",
-			-- priority = 1000,
-			-- config = function()
-			-- 	require("onedarkpro").setup({
-			-- 		options = {
-			-- 			transparency = true,
-			-- 			ualine_transparency = false
-			-- 		}
-			-- 	})
-			-- 	vim.cmd.colorscheme "onedark"
-			-- end,
-			--
-			"scottmckendry/cyberdream.nvim",
-			lazy = false,
+			"olimorris/onedarkpro.nvim",
 			priority = 1000,
 			config = function()
-				require("cyberdream").setup({
-					transparent = false,
+				require("onedarkpro").setup({
+					options = {
+						transparency = true,
+						ualine_transparency = false
+					}
 				})
-				vim.cmd.colorscheme "cyberdream"
+				vim.cmd.colorscheme "onedark"
 			end,
 		},
 		{ import = "hsiao.plugins" }

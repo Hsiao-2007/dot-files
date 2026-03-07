@@ -16,17 +16,13 @@ vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { desc = "paste from system cli
 
 vim.keymap.set('n', '<leader>t',
 	function()
-		-- local current = require("onedarkpro.config").config.options.transparency
-		-- require("onedarkpro").setup({
-		-- 	options = {
-		-- 		transparency = not current
-		-- 	}
-		-- })
-		-- vim.cmd("colorscheme onedark")
-		require("cyberdream").setup({
-			transparent = not vim.g.cyberdream_opts.transparent
+		local current = require("onedarkpro.config").config.options.transparency
+		require("onedarkpro").setup({
+			options = {
+				transparency = not current
+			}
 		})
-		vim.cmd.colorscheme "cyberdream"
+		vim.cmd("colorscheme onedark")
 	end,
 	{ desc = "toggle transparency" })
 
