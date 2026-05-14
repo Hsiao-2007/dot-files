@@ -156,7 +156,7 @@
 		"interval": 1,
         "tooltip": false,
         //"format-alt": "{:%m-%d-%y}",
-			"on-click": "bash $XDG_CONFIG_HOME/waybar/toggle_clock.sh"
+			"on-click": "bash /home/hsiao/.config/waybar/toggle_clock.sh"
     },
     "cpu": {
         "format": "  {usage}%",
@@ -252,9 +252,9 @@
         "max-length": 40,
         "exec-on-click": true,
 			"return-type": "json",
-        	"on-click": "bash $XDG_CONFIG_HOME/waybar/toggle_wallpaper.sh > /dev/null",
-			// "on-click-right": "bash $XDG_CONFIG_HOME/waybar/pause_wallpaper.sh > /dev/null",
-			"exec": "bash $XDG_CONFIG_HOME/waybar/wallpaper_name.sh",
+        	"on-click": "bash $HOME/.config/waybar/toggle_wallpaper.sh > /dev/null",
+			// "on-click-right": "bash $HOME/.config/waybar/pause_wallpaper.sh > /dev/null",
+			"exec": "bash $HOME/.config/waybar/wallpaper_name.sh",
         "tooltip": true,
         "tooltip-format": "Wallpaper switch tool"
     },
@@ -269,10 +269,10 @@
             "default": "🎜"
         },
         	"on-click": "playerctl play-pause",
-			"on-click-right": "bash $XDG_CONFIG_HOME/waybar/toggle_cava.sh",
+			"on-click-right": "bash /home/hsiao/.config/waybar/toggle_cava.sh",
         "escape": true,
-        "exec": "python3 $XDG_CONFIG_HOME/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$XDG_CONFIG_HOME/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "exec": "python3 $HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
 	"custom/power": {
 		"format" : " ",
