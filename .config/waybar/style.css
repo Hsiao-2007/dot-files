@@ -16,7 +16,7 @@
 
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: JetBrainsMono-NerdFont;
+  /* font-family: JetBrainsMonoNerdFont; */
   font-size: 14px;
 }
 
@@ -387,8 +387,18 @@ label:focus {
 	padding-right: 5px;
 	padding-bottom: 2px;
 	color: white;
-  background-color: red;
-  border-radius: 10px;
-  margin-right: 10px;
-  border-width: 0px;
+	background-color: red;
+	border-radius: 10px;
+	margin-right: 10px;
+	border-width: 0px;
 }
+
+#custom-notification {
+	color: white;
+	padding: 0 5px;
+	background-color: @bg;
+	border: 2px solid @bright_bg;
+	border-radius: 0px;
+	border-left-width: 0px;
+}
+

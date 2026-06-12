@@ -37,7 +37,7 @@ button:hover {
 
 button:active {
     color: var(--accent-fg-color);
-    background-color: var(--accent-bg-color);
+    background-color: #abb2bf;
 }
 
 button#shutdown {
