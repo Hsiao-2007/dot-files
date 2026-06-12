@@ -54,6 +54,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("waybar")
+	hl.exec_cmd("wleave --service")
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("mako")
 	hl.exec_cmd("udiskie")
@@ -62,17 +63,13 @@ hl.on("hyprland.start", function()
 	--Enable for plugin support
 	--hl.exec_cmd("hyprpm reload -nn")
 	hl.exec_cmd("touch /tmp/wallpaper_choice.txt | echo \"BEACH\" > /tmp/wallpaper_choice.txt")
-	hl.exec_cmd("keepassxc", { float = true, workspace = "1 silent" })
-	hl.dsp.focus("DP-1")
 	hl.exec_cmd("firefoxpwa site launch 01KK50SS7A63GW3F1ZEWRPF4Y8", { workspace = "2 silent" })
 	hl.exec_cmd("spotify", { workspace = "3 silent" })
-	hl.dsp.focus("DP-2")
+	hl.dsp.focus({ workspace = "1" })
+	hl.exec_cmd("keepassxc", { float = true, workspace = "1" })
 	hl.exec_cmd("discord --start-minimized")
 	hl.exec_cmd("kdeconnect-indicator")
-	-- Video Wallpaper (Old, too much GPU usage!)
-	-- exec-once = mpvpaper -o "no-audio --loop-playlist shuffle input-ipc-server=/tmp/mpv-socket" '*' ~/Videos/mylivewallpapers.com-Blue-Ocean-Waves.mp4 &
-	-- exec-once = touch /tmp/wallpaper_choice.txt | echo "BEACH" > /tmp/wallpaper_choice.txt
-	-- exec-once = touch /tmp/wallpaper_state.txt | echo "PLAY" > /tmp/wallpaper_state.txt
+	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
 
 -------------------------------
@@ -103,6 +100,7 @@ hl.env("XDG_PICTURES_DIR", "$HOME/Pictures")
 hl.env("XDG_PUBLICSHARE_DIR", "$HOME/Public")
 hl.env("XDG_TEMPLATES_DIR", "$HOME/Templates")
 hl.env("XDG_VIDEOS_DIR", "$HOME/Videos")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -364,7 +362,7 @@ hl.bind(mainMod .. " + SHIFT + V",
 hl.bind(mainMod .. " + ALT + code:59", hl.dsp.exec_cmd("rofimoji -f nerd_font -a clipboard"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("librewolf"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
-hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd("nwg-bar"))
+hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd("wleave"))
 hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
@@ -372,10 +370,10 @@ hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.move({ direction = "down" })
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("killall waybar; hyprctl dispatch 'hl.dsp.exec_cmd(\"waybar\")'"))
 hl.bind(mainMod .. " + ALT + S",
 	hl.dsp.exec_cmd(
-		"IMG=$(xdg-user-dir PICTURES)/Screenshots/Partial/$(date +'%s_grim.png') && grim -g \"$(slurp)\" $IMG && wl-copy < $IMG"))
+		'grim -g "$(slurp)" -t ppm - | satty -f - --floating-hack --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
 hl.bind(mainMod .. " + ALT + code:107",
 	hl.dsp.exec_cmd(
-		"IMG=$(xdg-user-dir PICTURES)/Screenshots/Full/$(date +'%s_grim.png') && notify-send -t 3000 -i $HOME/.local/share/icons/Papirus-Dark/32x32/devices/camera-photo.svg \"Full Screenshot Saved\" && grim $IMG && wl-copy < $IMG"))
+		'grim -t ppm - | satty -f - --floating-hack --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------

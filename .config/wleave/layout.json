@@ -1,0 +1,63 @@
+{
+    "buttons": [
+        {
+            "label": "lock",
+            "action": [
+                {
+                    "shell": "/home/hsiao/.config/hypr/.hyprlock.sh"
+                }
+            ],
+            "text": "",
+            "keybind": "l",
+            "icon": "/usr/share/wleave/icons/lock.svg"
+        },
+        {
+            "label": "hibernate",
+            "action": "systemctl hibernate",
+            "text": "",
+            "keybind": "h",
+            "icon": "/usr/share/wleave/icons/hibernate.svg"
+        },
+        {
+            "label": "logout",
+				"action": "hyprshutdown",
+            "text": "",
+            "keybind": "e",
+            "icon": "/usr/share/wleave/icons/logout.svg"
+        },
+        {
+            "label": "shutdown",
+            "action": [
+					{
+                    "shell": "hyprshutdown -t 'Shutting down...' -p 'systemctl -i poweroff'"
+					}
+				],
+				"text": "",
+            "keybind": "s",
+            "icon": "/usr/share/wleave/icons/shutdown.svg"
+        },
+        {
+            "label": "suspend",
+            "action": "systemctl suspend",
+            "text": "",
+            "keybind": "u",
+            "icon": "/usr/share/wleave/icons/suspend.svg"
+        },
+        {
+            "label": "reboot",
+            "action": [
+					{
+                    "shell": "hyprshutdown -t 'Restarting ...' -p 'systemctl -i reboot'"
+					}
+				],
+            "text": "",
+            "keybind": "r",
+            "icon": "/usr/share/wleave/icons/reboot.svg"
+        }
+    ],
+	 "css": "/home/hsiao/.config/wleave/style.css",
+	 "buttons-per-row": "6",
+	 "button-aspect-ratio": "1/1",
+	 "margin": "40%",
+	 "no-version-info": true
+}

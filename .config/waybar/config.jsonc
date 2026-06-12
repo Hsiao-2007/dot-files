@@ -33,6 +33,7 @@
 		"backlight",
 		"keyboard-state",
 		"battery",
+		// "custom/notification",
 		"tray",
 		"clock",
 		"custom/power"   
@@ -156,7 +157,7 @@
 		"interval": 1,
         "tooltip": false,
         //"format-alt": "{:%m-%d-%y}",
-			"on-click": "bash /home/hsiao/.config/waybar/toggle_clock.sh"
+			"on-click": "bash /home/hsiao/.config/waybar/toggle_clock.sh > /dev/null"
     },
     "cpu": {
         "format": "  {usage}%",
@@ -217,7 +218,7 @@
         	"tooltip-format": "{ifname}: {gwaddr}/{cidr}",
         	"format-linked": "⚠ {ifname} (No IP)",
         	"format-disconnected": "⚠ Disconnected",
-			"on-click": "hyprctl dispatch exec \"[float; center;] nm-connection-editor\""
+			"on-click": "hyprctl dispatch -q 'hl.dsp.exec_cmd(\"nm-connection-editor\", { float = true,  center = true })'"
         	// "format-alt": "{ifname}: {gwaddr}/{cidr}"
     },
     "pulseaudio": {
@@ -237,8 +238,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
-    },
+        "on-click": "hyprctl dispatch -q 'hl.dsp.exec_cmd(\"pavucontrol\", { float = true,  center = true })'"    },
     "custom/wallpaper": {
         "format": "{icon} {0}",
 			"format-icons": {
@@ -268,8 +268,8 @@
 				"firefox": "",
             "default": "🎜"
         },
-        	"on-click": "playerctl play-pause",
-			"on-click-right": "bash /home/hsiao/.config/waybar/toggle_cava.sh",
+		  "on-click": "playerctl play-pause",
+		  "on-click-right": "bash /home/hsiao/.config/waybar/toggle_cava.sh > /dev/null",
         "escape": true,
         "exec": "python3 $HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
@@ -278,7 +278,7 @@
 		"format" : " ",
 			"tooltip": true,
 		"exec-on-click": true,
-		"on-click": "nwg-bar &",
+		"on-click": "wleave &",
       "tooltip-format": "Power Menu"
 	},
 	"cava": {
@@ -301,5 +301,26 @@
       "actions": {
       	"on-click-right": "mode"
       }
-	}
+	},
+	"custom/notification": {
+    "tooltip": true,
+    // "format": "<span size='16pt'>{icon}</span>",
+    "format": "<span size='14pt'> {icon} </span>",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  }
 }
