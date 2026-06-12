@@ -16,7 +16,7 @@ vim.opt.mousemoveevent = true
 --LSP Configuration
 require("vim.lsp")
 -- vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
-vim.lsp.codelens.enable(true)
+-- vim.lsp.codelens.enable(true)
 
 vim.lsp.enable({
 	'lua_ls',
