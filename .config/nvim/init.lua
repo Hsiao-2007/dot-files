@@ -1,1 +1,4 @@
-require("hsiao") -- Load user config init.lua
+require("config.lazy")
+require("config.keymaps")
+require("config.options")
+require("config.autocmds")

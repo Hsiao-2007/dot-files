@@ -1,3 +1,8 @@
+-- Needs to be set before ig?
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -18,7 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
-		{ import = "hsiao.plugins" }
+		{ import = "plugins" }
 	},
 	-- automatically check for plugin updates
 	checker = { enabled = true, notify = false },
