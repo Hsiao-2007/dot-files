@@ -52,6 +52,8 @@ local menu        = "rofi -show drun -display-drun \"Run\""
 --
 hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
+	-- Check arch wiki when launching hyprland from greetd or TTY!, additional things must be done to accommodate for xdg-desktop-portal-hyprland
+	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("wleave --service")
@@ -69,7 +71,6 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("keepassxc", { float = true, workspace = "1" })
 	hl.exec_cmd("discord --start-minimized")
 	hl.exec_cmd("kdeconnect-indicator")
-	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 end)
 
 -------------------------------
@@ -78,28 +79,45 @@ end)
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 
+-- Cursor
 hl.env("XCURSOR_SIZE", "24")
 hl.env("XCURSOR_THEME", "Bibata")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_THEME", "Bibata")
+
+-- Nvidia, read wiki and adjust accordingly https://wiki.hypr.land/Nvidia/
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("GBM_BACKEND", "nvidia-drm")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("__GL_GSYNC_ALLOWED", 1)
 hl.env("__GL_VRR_ALLOWED", 1)
 hl.env("NVD_BACKEND", "direct")
+
+-- Hyprland
+hl.env("HYPRLAND_TRACE", 0) -- Set to 1 to see error traces
+hl.env("AQ_TRACE", 0)       -- Set to 1 to see error traces
+
+-- QT
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
-hl.env("SSH_AUTH_SOCK", "$XDG_RUNTIME_DIR/ssh-agent.socket")
+hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
+hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
+
+-- XDG
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
-hl.env("XDG_DESKTOP_DIR", "$HOME/Desktop")
-hl.env("XDG_DOCUMENTS_DIR", "$HOME/Documents")
-hl.env("XDG_DOWNLOAD_DIR", "$HOME/Downloads")
-hl.env("XDG_MUSIC_DIR", "$HOME/Music")
-hl.env("XDG_PICTURES_DIR", "$HOME/Pictures")
-hl.env("XDG_PUBLICSHARE_DIR", "$HOME/Public")
-hl.env("XDG_TEMPLATES_DIR", "$HOME/Templates")
-hl.env("XDG_VIDEOS_DIR", "$HOME/Videos")
+hl.env("XDG_DESKTOP_DIR", os.getenv("HOME") .. "/Desktop")
+hl.env("XDG_DOCUMENTS_DIR", os.getenv("HOME") .. "/Documents")
+hl.env("XDG_DOWNLOAD_DIR", os.getenv("HOME") .. "/Downloads")
+hl.env("XDG_MUSIC_DIR", os.getenv("HOME") .. "/Music")
+hl.env("XDG_PICTURES_DIR", os.getenv("HOME") .. "/Pictures")
+hl.env("XDG_PUBLICSHARE_DIR", os.getenv("HOME") .. "/Public")
+hl.env("XDG_TEMPLATES_DIR", os.getenv("HOME") .. "/Templates")
+hl.env("XDG_VIDEOS_DIR", os.getenv("HOME") .. "/Videos")
+
+-- Other
+hl.env("SSH_AUTH_SOCK", os.getenv("XDG_RUNTIME_DIR") .. "/ssh-agent.socket")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 
 -----------------------
@@ -251,10 +269,16 @@ hl.config({
 
 hl.config({
 	misc = {
-		force_default_wallpaper  = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
-		disable_hyprland_logo    = true, -- If true disables the random hyprland logo / anime girl background. :(
-		disable_splash_rendering = true
+		force_default_wallpaper      = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
+		disable_hyprland_logo        = true, -- If true disables the random hyprland logo / anime girl background. :(
+		disable_splash_rendering     = true,
+		vrr                          = 3,
+		animate_manual_resizes       = true, -- Can't even see if this does anything can't lie
+		animate_mouse_windowdragging = true
 	},
+	debug = {
+		disable_logs = true -- Set false to see logs
+	}
 })
 
 
@@ -264,19 +288,20 @@ hl.config({
 
 hl.config({
 	input = {
-		kb_layout    = "us",
-		kb_variant   = "",
-		kb_model     = "",
-		kb_options   = "",
-		kb_rules     = "",
+		kb_layout      = "us",
+		kb_variant     = "",
+		kb_model       = "",
+		kb_options     = "",
+		kb_rules       = "",
 
-		follow_mouse = 1,
+		follow_mouse   = 1,
 
-		sensitivity  = 0, -- -1.0 - 1.0, 0 means no modification.
+		sensitivity    = 0, -- -1.0 - 1.0, 0 means no modification.
 
-		touchpad     = {
+		touchpad       = {
 			natural_scroll = false,
 		},
+		force_no_accel = true -- Possibly unstable, but a must have i'd say
 	},
 })
 
@@ -304,8 +329,9 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+-- DISABLED: Use SUPER + ESC instead
+-- hl.bind(mainMod .. " + M",
+-- 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
@@ -331,8 +357,8 @@ hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+-- hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+-- hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -357,23 +383,102 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Custom Binds
+-- Copy paste menu
 hl.bind(mainMod .. " + SHIFT + V",
 	hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p \"Copy\" | cliphist decode | wl-copy"))
+
+-- Emoji menu
 hl.bind(mainMod .. " + ALT + code:59", hl.dsp.exec_cmd("rofimoji -f nerd_font -a clipboard"))
+
+-- Open browser keybind
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("librewolf"))
+
+-- Fullscreen
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+
+-- System action menu
 hl.bind(mainMod .. " + escape", hl.dsp.exec_cmd("wleave"))
+
+-- Window move binds
 hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.move({ direction = "down" }))
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("killall waybar; hyprctl dispatch 'hl.dsp.exec_cmd(\"waybar\")'"))
+
+-- Waybar refresh bind
+hl.bind(mainMod .. " + W", function()
+	hl.exec_cmd("killall waybar")
+	hl.exec_cmd("sleep 2")
+	hl.exec_cmd("waybar &")
+	hl.exec_cmd("hyprctl reload")
+end)
+
+-- Screenshot
 hl.bind(mainMod .. " + ALT + S",
 	hl.dsp.exec_cmd(
 		'grim -g "$(slurp)" -t ppm - | satty -f - --floating-hack --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
 hl.bind(mainMod .. " + ALT + code:107",
 	hl.dsp.exec_cmd(
 		'grim -t ppm - | satty -f - --floating-hack --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"'))
+
+-- "Gamemode"
+hl.bind(mainMod .. " + F1", function()
+	local game_mode = (hl.get_config("animations.enabled") == false)
+
+	if game_mode then
+		hl.exec_cmd("waybar &")
+		hl.exec_cmd("hyprctl reload")
+		return
+	end
+
+	hl.exec_cmd("killall waybar")
+	hl.config({
+		general = {
+			gaps_in = 0,
+			gaps_out = 0, -- Disable gaps
+			border_size = 0,
+		},
+
+		animations = {
+			enabled = false, -- Disable animations
+		},
+
+		-- Disable blur, shadow and window rounding
+		decoration = {
+			shadow = { enabled = false },
+			blur = { enabled = false },
+			rounding = 0,
+		}
+	})
+end)
+
+-- Zoom
+local MAX_ZOOM = 3
+local MIN_ZOOM = 1
+local ZOOM_TOGGLE_FACTOR = 1.5
+
+---@param offset number
+---@return nil
+local function zoom(offset)
+	local current = hl.get_config("cursor.zoom_factor")
+	if offset ~= nil then
+		current = current + offset
+	elseif current ~= MIN_ZOOM then
+		current = MIN_ZOOM
+	else
+		current = ZOOM_TOGGLE_FACTOR
+	end
+	current = math.max(MIN_ZOOM, math.min(MAX_ZOOM, current))
+	hl.config({ cursor = { zoom_factor = current } })
+end
+
+hl.bind(mainMod .. " + Z", zoom)
+hl.bind(mainMod .. " + EQUAL", function()
+	zoom(0.5)
+end)
+hl.bind(mainMod .. " + MINUS", function()
+	zoom(-0.5)
+end)
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
