@@ -1,6 +1,7 @@
 -- Navigation
 -- vim.keymap.set("n", "<leader>z", vim.cmd.Ex, { desc = "open backup file tree" })
-vim.keymap.set("n", "<tab>", "<cmd>bnext<CR>", { desc = "change tab" })
+vim.keymap.set("n", "<tab>", "<cmd>bnext<CR>", { desc = "change tab (forward)" })
+vim.keymap.set("n", "<S-tab>", "<cmd>bprev<CR>", { desc = "change tab (backward)" })
 vim.keymap.set("n", "<leader>x", "<cmd>bd<CR> <bar> <cmd>bl<CR>", { desc = "close current tab" })
 
 -- Telescope
