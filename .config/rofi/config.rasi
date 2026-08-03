@@ -155,8 +155,6 @@ configuration {
       sorting-method:    "name";
   }
 }
-//@theme "/usr/share/rofi/themes/android_notification.rasi"
-
-
-
-@theme "/usr/share/rofi/themes/onedark.rasi"
+@theme "/home/hsiao/.local/share/rofi/themes/rounded-nord-dark.rasi"
+// @theme "/usr/share/rofi/themes/android_notification.rasi"
+// @theme "/usr/share/rofi/themes/onedark.rasi"

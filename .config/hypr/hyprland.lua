@@ -61,7 +61,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("mako")
 	hl.exec_cmd("udiskie")
 	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("wl-paste --watch cliphist store")
+	hl.exec_cmd("ssh-agent")
 	--Enable for plugin support
 	--hl.exec_cmd("hyprpm reload -nn")
 	hl.exec_cmd("touch /tmp/wallpaper_choice.txt | echo \"BEACH\" > /tmp/wallpaper_choice.txt")
@@ -69,6 +69,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("spotify", { workspace = "3 silent" })
 	hl.dsp.focus({ workspace = "1" })
 	hl.exec_cmd("keepassxc", { float = true, workspace = "1" })
+	-- Must be done after in order for proper clipboard clearing
+	hl.exec_cmd("wl-paste --watch cliphist store")
 	hl.exec_cmd("discord --start-minimized")
 	hl.exec_cmd("kdeconnect-indicator")
 end)
@@ -94,7 +96,7 @@ hl.env("__GL_VRR_ALLOWED", 1)
 hl.env("NVD_BACKEND", "direct")
 
 -- Hyprland
-hl.env("HYPRLAND_TRACE", 0) -- Set to 1 to see error traces
+hl.env("HYPRLAND_TRACE", 1) -- Set to 1 to see error traces
 hl.env("AQ_TRACE", 0)       -- Set to 1 to see error traces
 
 -- QT
@@ -201,7 +203,8 @@ hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1 }
 hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
 
 -- Default springs
-hl.curve("easy", { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
+-- hl.curve("easy", { type = "spring", mass = 1, stiffness = 265.2633, dampening = 25.8273644 })
+hl.curve("easy", { type = "spring", mass = 1, stiffness = 265.2633, dampening = 25.8273644 })
 
 hl.animation({ leaf = "global", enabled = true, speed = 10, bezier = "default" })
 hl.animation({ leaf = "border", enabled = true, speed = 5.39, bezier = "easeOutQuint" })
@@ -273,11 +276,11 @@ hl.config({
 		disable_hyprland_logo        = true, -- If true disables the random hyprland logo / anime girl background. :(
 		disable_splash_rendering     = true,
 		vrr                          = 3,
-		animate_manual_resizes       = true, -- Can't even see if this does anything can't lie
-		animate_mouse_windowdragging = true
+		animate_manual_resizes       = false, -- Can't even see if this does anything can't lie
+		animate_mouse_windowdragging = false
 	},
 	debug = {
-		disable_logs = true -- Set false to see logs
+		disable_logs = false -- Set false to see logs
 	}
 })
 
@@ -391,7 +394,8 @@ hl.bind(mainMod .. " + SHIFT + V",
 hl.bind(mainMod .. " + ALT + code:59", hl.dsp.exec_cmd("rofimoji -f nerd_font -a clipboard"))
 
 -- Open browser keybind
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("librewolf"))
+-- hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("librewolf"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("zen-browser"))
 
 -- Fullscreen
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
@@ -436,7 +440,7 @@ hl.bind(mainMod .. " + F1", function()
 		general = {
 			gaps_in = 0,
 			gaps_out = 0, -- Disable gaps
-			border_size = 0,
+			border_size = 1,
 		},
 
 		animations = {
