@@ -15,27 +15,12 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({
-	output   = "DP-1",
-	mode     = "2560x1440@144",
-	position = "2560x0",
-	scale    = "1",
-	vrr      = 2
-})
-
-hl.monitor({
-	output   = "DP-2",
-	mode     = "2560x1440@144",
-	position = "0x0",
-	scale    = "1",
-	vrr      = 2
-})
 
 hl.monitor({
 	output   = "eDP-1",
 	mode     = "2256x1504@60",
 	position = "0x0",
-	scale    = "1.1",
+	scale    = "1.17",
 	vrr      = 2
 })
 
@@ -61,18 +46,20 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	-- Check arch wiki when launching hyprland from greetd or TTY!, additional things must be done to accommodate for xdg-desktop-portal-hyprland
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-	hl.exec_cmd("nm-applet")
+	-- hl.exec_cmd("nm-applet")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("wleave --service")
 	hl.exec_cmd("hypridle")
-	hl.exec_cmd("mako")
+	-- hl.exec_cmd("mako")
+	hl.exec_cmd("dunst")
 	hl.exec_cmd("udiskie")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("ssh-agent")
 	--Enable for plugin support
 	--hl.exec_cmd("hyprpm reload -nn")
 	hl.exec_cmd("touch /tmp/wallpaper_choice.txt | echo \"BEACH\" > /tmp/wallpaper_choice.txt")
-	hl.exec_cmd("firefoxpwa site launch 01KK50SS7A63GW3F1ZEWRPF4Y8", { workspace = "2 silent" })
+	-- hl.exec_cmd("firefoxpwa site launch 01KK50SS7A63GW3F1ZEWRPF4Y8", { workspace = "2 silent" })
+	hl.exec_cmd("firefoxpwa site launch 01JXQSMWNJG5J6RFQT6PH7MQKH", { workspace = "2 silent" })
 	hl.exec_cmd("spotify", { workspace = "3 silent" })
 	hl.dsp.focus({ workspace = "1" })
 	hl.exec_cmd("keepassxc", { float = true, workspace = "1" })
@@ -90,17 +77,9 @@ end)
 
 -- Cursor
 hl.env("XCURSOR_SIZE", "24")
-hl.env("XCURSOR_THEME", "Bibata")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 hl.env("HYPRCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_THEME", "Bibata")
-
--- Nvidia, read wiki and adjust accordingly https://wiki.hypr.land/Nvidia/
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
-hl.env("GBM_BACKEND", "nvidia-drm")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-hl.env("__GL_GSYNC_ALLOWED", 1)
-hl.env("__GL_VRR_ALLOWED", 1)
-hl.env("NVD_BACKEND", "direct")
+hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Classic")
 
 -- Hyprland
 hl.env("HYPRLAND_TRACE", 1) -- Set to 1 to see error traces
@@ -248,9 +227,9 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 --     border_size = 0,
 --     rounding    = 0,
 -- })
-hl.workspace_rule({ workspace = "1", monitor = "DP-2" })
-hl.workspace_rule({ workspace = "2", monitor = "DP-1" })
-hl.workspace_rule({ workspace = "3", monitor = "DP-1" })
+hl.workspace_rule({ workspace = "1", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "2", monitor = "eDP-1" })
+hl.workspace_rule({ workspace = "3", monitor = "eDP-1" })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -393,6 +372,10 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Custom Binds
+
+-- Dunst history pop
+hl.bind(mainMod .. " + d",
+	hl.dsp.exec_cmd("dunstctl history-pop"))
 -- Copy paste menu
 hl.bind(mainMod .. " + SHIFT + V",
 	hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p \"Copy\" | cliphist decode | wl-copy"))
