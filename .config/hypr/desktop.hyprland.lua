@@ -54,18 +54,20 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	-- Check arch wiki when launching hyprland from greetd or TTY!, additional things must be done to accommodate for xdg-desktop-portal-hyprland
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-	hl.exec_cmd("nm-applet")
+	-- hl.exec_cmd("nm-applet")
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("wleave --service")
 	hl.exec_cmd("hypridle")
-	hl.exec_cmd("mako")
+	-- hl.exec_cmd("mako")
+	hl.exec_cmd("dunst")
 	hl.exec_cmd("udiskie")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("ssh-agent")
 	--Enable for plugin support
 	--hl.exec_cmd("hyprpm reload -nn")
 	hl.exec_cmd("touch /tmp/wallpaper_choice.txt | echo \"BEACH\" > /tmp/wallpaper_choice.txt")
-	hl.exec_cmd("firefoxpwa site launch 01KK50SS7A63GW3F1ZEWRPF4Y8", { workspace = "2 silent" })
+	-- hl.exec_cmd("firefoxpwa site launch 01KK50SS7A63GW3F1ZEWRPF4Y8", { workspace = "2 silent" })
+	hl.exec_cmd("firefoxpwa site launch 01KZ4EXJAV9GJ9NCVQSRCHH45A", { workspace = "2 silent" })
 	hl.exec_cmd("spotify", { workspace = "3 silent" })
 	hl.dsp.focus({ workspace = "1" })
 	hl.exec_cmd("keepassxc", { float = true, workspace = "1" })
@@ -386,6 +388,11 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Custom Binds
+
+-- Dunst history pop
+hl.bind(mainMod .. " + d",
+	hl.dsp.exec_cmd("dunstctl history-pop"))
+
 -- Copy paste menu
 hl.bind(mainMod .. " + SHIFT + V",
 	hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p \"Copy\" | cliphist decode | wl-copy"))
