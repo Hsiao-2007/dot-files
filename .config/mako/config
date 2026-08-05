@@ -1,7 +1,7 @@
 background-color=#282c34ff
 font=JetBrainsMonoNerdFontMono-Regular 11
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
-on-button-middle=exec makoctl menu -- rofi -demnu -p 'Select action: '
+on-button-middle=exec makoctl menu -- dmenu -p 'Select action: '
 default-timeout=5000
 
 border-color=#3e4451
