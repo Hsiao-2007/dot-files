@@ -42,11 +42,11 @@ format = '[$time]($style) '
 format = '[$duration]($style) '
 style = 'bold white'
 
-[custom.vpn]
-command = "echo 󰅧 "
-style = 'bold green'
-when = ''' nmcli dev status | grep 'HomeServer.*connected.*' > /dev/null '''
-format = '[$output]($style) '
+# [custom.vpn]
+# command = "echo 󰅧 "
+# style = 'bold green'
+# when = ''' nmcli dev status | grep 'HomeServer.*connected.*' > /dev/null '''
+# format = '[$output]($style) '
 
   
 # Disable the package module, hiding it from the prompt completely  

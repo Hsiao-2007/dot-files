@@ -9,9 +9,10 @@ vim.opt.updatetime = 50
 vim.opt.spell = true
 vim.opt.spelllang = { "en_us" }
 vim.opt.mousemoveevent = true
--- Eventual migration when I get color support and lsp support figured out
+vim.opt.relativenumber = true
+-- Eventual migration when I get color support figured out
 -- vim.opt.autocomplete = true
--- vim.opt.completeopt = { "menuone", "noselect", "popup" }
+--
 
 --LSP Configuration
 require("vim.lsp")
@@ -25,9 +26,12 @@ vim.lsp.enable({
 	'jdtls',
 	'gopls',
 	'rust_analyzer',
-	"csharp_ls"
+	'csharp_ls',
+	'expert'
 })
 
 vim.diagnostic.config({
 	virtual_text = false
 })
+
+require('blink.cmp').build():pwait()

@@ -20,7 +20,8 @@ setopt INC_APPEND_HISTORY
 # Path Variables
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export PATH="$PATH:$(go env GOBIN)"
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH="$PATH:$(go env GOBIN):$DOTNET_ROOT:$DOTNET_ROOT/tools"
 
 # Bat theme
 export BAT_THEME=ansi
@@ -32,9 +33,10 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 # Misc
-export DOCKER_HOST=unix:///run/user/1000/docker.sock
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+# export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export EDITOR='nvim'
+export CC=gcc
 
 
 # Aliases
@@ -43,15 +45,19 @@ source ~/.zsh/aliases.zsh
 # ZSH Plugins
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# zsh syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets)
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=magenta,bold'
 
+# fzf
 source <(fzf --zsh)
 export FZF_DEFAULT_OPTS='--height 50% --tmux
 --color=fg:-1,bg:-1,hl:#0080ff
 --color=fg+:,bg+:,hl+:#5fd7ff
 --color=info:#0080ff,prompt:#5fd7ff,pointer:#5fd7ff
 --color=marker:#87ff00,spinner:#0080ff,header:#87afaf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+
+# starship
 eval "$(starship init zsh)"
